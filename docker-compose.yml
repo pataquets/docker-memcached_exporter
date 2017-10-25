@@ -1,0 +1,12 @@
+memcached:
+  image: memcached
+  ports:
+    - 11211:11211
+
+exporter:
+  image: pataquets/memcached_exporter
+  command: --memcached.address=memcached:11211
+  links:
+    - memcached
+  ports:
+    - 9150:9150
