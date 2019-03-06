@@ -3,6 +3,12 @@ memcached:
   ports:
     - 11211:11211
 
+benchmark:
+  image: pataquets/memtier_benchmark
+  command: [ "--server=memcached", "--port=11211", "--protocol=memcache_text" ]
+  links:
+    - memcached
+
 exporter:
   image: pataquets/memcached_exporter
   command: --memcached.address=memcached:11211
